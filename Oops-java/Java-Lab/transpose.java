@@ -41,8 +41,8 @@ class transpose
 }
 
 
-PS C:\Users\devik\java practise> javac transpose.java
-PS C:\Users\devik\java practise> java transpose
+PS C:\Users\sahil\java practise> javac transpose.java
+PS C:\Users\sahil\java practise> java transpose
 enter the size of matrix
 2
 2
@@ -54,5 +54,5 @@ a[1][1]: 4
 the transpose matrix is
  1 3
  2 4
-PS C:\Users\devik\java practise>
+PS C:\Users\sahil\java practise>
 
