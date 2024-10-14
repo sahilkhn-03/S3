@@ -4,8 +4,6 @@ import java.util.Scanner;
 public class FileStreamExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
-        // Take input for file names
         System.out.println("Enter the input file name to read from:");
         String inputFileName = scanner.nextLine();
 
@@ -16,13 +14,9 @@ public class FileStreamExample {
         FileOutputStream outputStream = null;
 
         try {
-            // Open the input file
+    
             inputStream = new FileInputStream(inputFileName);
-
-            // Open the output file
             outputStream = new FileOutputStream(outputFileName);
-
-            // Read from the input file and write to the output file byte by byte
             int byteData;
             while ((byteData = inputStream.read()) != -1) {
                 outputStream.write(byteData);
