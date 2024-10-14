@@ -1,47 +1,51 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class FileReadWriteExample {
+public class FileStreamExample {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Take input for file names and content
-        System.out.println("Enter the file name to read from:");
+        // Take input for file names
+        System.out.println("Enter the input file name to read from:");
         String inputFileName = scanner.nextLine();
 
-        System.out.println("Enter the file name to write to:");
+        System.out.println("Enter the output file name to write to:");
         String outputFileName = scanner.nextLine();
 
+        FileInputStream inputStream = null;
+        FileOutputStream outputStream = null;
+
         try {
-            // Reading from the input file
-            File inputFile = new File(inputFileName);
-            if (!inputFile.exists()) {
-                System.out.println("Input file does not exist.");
-                return;
-            }
-            FileReader fileReader = new FileReader(inputFile);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
+            // Open the input file
+            inputStream = new FileInputStream(inputFileName);
 
-            // Writing to the output file
-            FileWriter fileWriter = new FileWriter(outputFileName);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+            // Open the output file
+            outputStream = new FileOutputStream(outputFileName);
 
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                bufferedWriter.write(line);
-                bufferedWriter.newLine();
+            // Read from the input file and write to the output file byte by byte
+            int byteData;
+            while ((byteData = inputStream.read()) != -1) {
+                outputStream.write(byteData);
             }
 
-            // Close readers and writers
-            bufferedReader.close();
-            bufferedWriter.close();
-
-            System.out.println("File content successfully copied to " + outputFileName);
+            System.out.println("File copied successfully from " + inputFileName + " to " + outputFileName);
 
         } catch (FileNotFoundException e) {
             System.out.println("File not found: " + e.getMessage());
         } catch (IOException e) {
             System.out.println("An error occurred while reading/writing the file: " + e.getMessage());
+        } finally {
+            // Close the streams to release system resources
+            try {
+                if (inputStream != null) {
+                    inputStream.close();
+                }
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                System.out.println("Error closing streams: " + e.getMessage());
+            }
         }
 
         scanner.close();
