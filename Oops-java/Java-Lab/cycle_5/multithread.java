@@ -69,20 +69,8 @@ class cubecal implements Runnable
 		System.out.println("\nThe cube of the number is : "+(number*number*number));
 	}
 }
-class shareNo
-  {
-  	private int number;
-	public synchronized void setNo(int number)
-	{
-		this.number = number;
-	}
-	public synchronized int getNumber()
-		{ 
-			return number;
-	 	}
- }
 
-	public class multh
+public class multh
 	{
 		public static void main(String args[])
 			{
@@ -92,6 +80,8 @@ class shareNo
 		thread.start();
 			}
 	}
+   	  	          
+   	  	      
 output_
 student@ml-23:~/sahil$ javac multh.java
 student@ml-23:~/sahil$ java multh
