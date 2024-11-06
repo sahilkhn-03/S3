@@ -1,14 +1,13 @@
-import java.util.*;
+
+
+output_
+student@ml-23:~/sahil$ javac multh.javaimport java.util.*;
 class RandomNoGen implements Runnable
    {
-   	private int limit;
-   	RandomNoGen(int limit)
-   	   {
-   	   	this.limit = limit;
-   	   }
    	public void run()
    	  {
-   	  	           for(int i = 0;i<limit;i++)
+   	  	int b = 1;
+   	  	 		while(b==1)
    	  	           	{
    	  	          	int n = (int)(Math.random()*100);
    	  	          	System.out.println("The Generated Number is : "+n);
@@ -74,16 +73,14 @@ public class multh
 	{
 		public static void main(String args[])
 			{
-				int limit = 5;
-		RandomNoGen t = new RandomNoGen(limit);
+			
+		RandomNoGen t = new RandomNoGen();
 		Thread thread = new Thread(t);
 		thread.start();
 			}
 	}
    	  	          
    	  	      
-output_
-student@ml-23:~/sahil$ javac multh.java
 student@ml-23:~/sahil$ java multh
 The Generated Number is : 11
 
