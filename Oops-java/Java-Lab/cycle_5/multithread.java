@@ -92,4 +92,21 @@ class shareNo
 		thread.start();
 			}
 	}
-   	  	          
+output_
+student@ml-23:~/sahil$ javac multh.java
+student@ml-23:~/sahil$ java multh
+The Generated Number is : 11
+
+The cube of the number is : 1331
+The Generated Number is : 31
+
+The cube of the number is : 29791
+The Generated Number is : 27
+
+The cube of the number is : 19683
+The Generated Number is : 40
+The Squre of The no is 1600
+The Generated Number is : 23
+
+The cube of the number is : 12167
+student@ml-23:~/sahil$ 
