@@ -1,0 +1,274 @@
+student@ml-23:~$ mysql -u root -p
+Enter password: 
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.40-0ubuntu0.22.04.1 (Ubuntu)
+
+Copyright (c) 2000, 2024, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> database sahilkhaan
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database sahilkhaan' at line 1
+mysql> use sahilkhaan
+ERROR 1049 (42000): Unknown database 'sahilkhaan'
+mysql> database sahill
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'database sahill' at line 1
+mysql> create database sahilkhan;
+Query OK, 1 row affected (0.03 sec)
+
+mysql> create table player( plyr_id int PRIMARY KEY,team varchar(10),name varchar(10));
+ERROR 1046 (3D000): No database selected
+mysql> desc player
+    -> ;
+ERROR 1046 (3D000): No database selected
+mysql> use sahilkhan;
+Database changed
+mysql> create table player( plyr_id int PRIMARY KEY,team varchar(10),name varchar(10));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc player;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| plyr_id | int         | NO   | PRI | NULL    |       |
+| team    | varchar(10) | YES  |     | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+3 rows in set (0.01 sec)
+
+mysql> create table student(roll_no int,name varchar(10));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> alter table student ADD CONSTRAINT pk_SAH PRIMARY KEY(roll_no);
+Query OK, 0 rows affected (0.07 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc student
+    -> desc student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc student' at line 2
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| name    | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table new1(roll_no int primary key,dept varchar(10));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table new2(roll int,hostel_room int );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> create table new3(roll int,room_no int,foregin key(roll) references new1(roll_no));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'key(roll) references new1(roll_no))' at line 1
+mysql> create table new3(roll int,room_no int,foreign key(roll) references new1(roll_no));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> insert into new1 values((1,"Cse-ai"),(2,"cse-ai"),(3,"cse-ai"));
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into new1 values((1,"ai"),(2,"ai"),(3,"ai"));
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> desc new1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| dept    | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into new1 values(1,"ai"),(2,"ai"),(3,"ai");
+Query OK, 3 rows affected (0.02 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc new1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   | PRI | NULL    |       |
+| dept    | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select * from new1;
++---------+------+
+| roll_no | dept |
++---------+------+
+|       1 | ai   |
+|       2 | ai   |
+|       3 | ai   |
++---------+------+
+3 rows in set (0.00 sec)
+
+mysql> insert into new3 values(89,98);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`sahilkhan`.`new3`, CONSTRAINT `new3_ibfk_1` FOREIGN KEY (`roll`) REFERENCES `new1` (`roll_no`))
+mysql> 
+mysql> insert into new3 values(1,98);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into new3 values(2,38);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into new3 values(3,18);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from new3;
++------+---------+
+| roll | room_no |
++------+---------+
+|    1 |      98 |
+|    2 |      38 |
+|    3 |      18 |
++------+---------+
+3 rows in set (0.00 sec)
+
+mysql> create table t1(roll_no int not null,name varchar(30));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc t1;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll_no | int         | NO   |     | NULL    |       |
+| name    | varchar(30) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> create table t2(user_id varchar(10) UNIQUE,name varchar(20));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc t2;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| user_id | varchar(10) | YES  | UNI | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.01 sec)
+
+mysql> create table t3 values(use_id int primary key,age int check(age>18));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(use_id int primary key,age int check(age>18))' at line 1
+mysql> insert into t3 values(use_id int primary key,age int check(age>18));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'int primary key,age int check(age>18))' at line 1
+mysql> create table t3(use_id int primary key,age int check(age>18));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into t3 values(33,17);
+ERROR 3819 (HY000): Check constraint 't3_chk_1' is violated.
+mysql> insert into t3 values(33,18);
+ERROR 3819 (HY000): Check constraint 't3_chk_1' is violated.
+mysql> insert into t3 values(33,19);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from t3;
++--------+------+
+| use_id | age  |
++--------+------+
+|     33 |   19 |
++--------+------+
+1 row in set (0.00 sec)
+
+mysql> select * from t3 age>15;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '>15' at line 1
+mysql> select * from t3 age>18;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '>18' at line 1
+mysql> create table t5(empid  int primary key ,name varchar (10),salary int ,status varchar(10) default "ACTIVE");
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc t5;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| empid  | int         | NO   | PRI | NULL    |       |
+| name   | varchar(10) | YES  |     | NULL    |       |
+| salary | int         | YES  |     | NULL    |       |
+| status | varchar(10) | YES  |     | ACTIVE  |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into t5 values(41,"sahil",75000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into t5 values(43,"sahil",75000);
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> insert into t5 values(43,"sahil",75000,NULL);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from t5;
++-------+-------+--------+--------+
+| empid | name  | salary | status |
++-------+-------+--------+--------+
+|    43 | sahil |  75000 | NULL   |
++-------+-------+--------+--------+
+1 row in set (0.00 sec)
+
+mysql> insert into t5(empid,name,salary) values(23,"pessi",1000),(79,"rolando",2000);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from t5;
++-------+---------+--------+--------+
+| empid | name    | salary | status |
++-------+---------+--------+--------+
+|    23 | pessi   |   1000 | ACTIVE |
+|    43 | sahil   |  75000 | NULL   |
+|    79 | rolando |   2000 | ACTIVE |
++-------+---------+--------+--------+
+3 rows in set (0.00 sec)
+
+mysql> insert into t5 values(45,"empapi",4500,"inactive");
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from t5;
++-------+---------+--------+----------+
+| empid | name    | salary | status   |
++-------+---------+--------+----------+
+|    23 | pessi   |   1000 | ACTIVE   |
+|    43 | sahil   |  75000 | NULL     |
+|    45 | empapi  |   4500 | inactive |
+|    79 | rolando |   2000 | ACTIVE   |
++-------+---------+--------+----------+
+4 rows in set (0.00 sec)
+
+mysql> 
+mysql> create new table employees(empid int primary key , name varchar(30),departnment varchar (26));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'new table employees(empid int primary key , name varchar(30),departnment varchar' at line 1
+mysql> create table employees(empid int primary key , name varchar(30),departnment varchar (26));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> desc employees
+    -> ;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| empid       | int         | NO   | PRI | NULL    |       |
+| name        | varchar(30) | YES  |     | NULL    |       |
+| departnment | varchar(26) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into employees values(1,"sahil","cse-ai"),(2,"vimal","yus");
+Query OK, 2 rows affected (0.03 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from employees;
++-------+-------+-------------+
+| empid | name  | departnment |
++-------+-------+-------------+
+|     1 | sahil | cse-ai      |
+|     2 | vimal | yus         |
++-------+-------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> insert into employees values(1,"sakhil","cse-ai"),(3,"wimal","yus");
+ERROR 1062 (23000): Duplicate entry '1' for key 'employees.PRIMARY'
+mysql> create 
+
