@@ -43,4 +43,26 @@ int main()
         return 0;
 }
 
+CASE MANIPULATIVE functions (LOWER,UPPER,INITCAP)
+select LOWER('ASIET IS FOR TECH GEEKS ONLY') FROM dual;
+select UPPER('ASIET IS FOR TECH GEEKS ONLY') FROM dual;
+
+CHARACTER MANIPULATIVE FUNCTIONS
+(concat,length,substr,instr,lpad,rpad,trim,replace).
+select CONCAT ('CSE','-AI') from dual;
+select CONCAT (NULL,'-AI') from dual;
+SELECT LENGTH ('Learning is always fun') from dual;
+SELECT LENGTH ('    DATABASE') from dual;
+SELECT LENGTH ('Learning is always fun') from dual;
+SELECt SUBSTR ('Database Management System', 9) from dual;
+SELECT SUBSTR ('Database Management System',9,7) from dual;
+SELECT INSTR ('Google apps are the great applications','app') from dual;
+SELECT INSTR ('Google apps are the great applications','app',1,2) from dual;
+SELECT LPAD('100',5,'*') from dual;
+SELECT RPAD('100',5,'*') from dual;
+SELECT LPAD('hello',21,'asiet') from dual;
+SELECT RPAD('earn',19,'respect') from dual;
+SELECT TRIM('A' from 'Android') from dual;
+SELECT TRIM ('      android') from dual;
+SELECT REPLACE ('Data management ','Data ','Database') from dual;
 
